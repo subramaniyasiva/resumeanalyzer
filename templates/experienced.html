@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+    <head>
+        <title>Resume Filter</title>
+        <link rel="stylesheet" href="{% static 's1.css' %}"
+        </head>
+    <body>
+        <h1>Upload The CV in pdf Format     and Enter The Job Decription<h1>
+            <br>
+            <Hr>
+            <Br>
+        <div class="main">
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="File" name="resume" id="resume" required><Br><Br><Br>
+            
+           <textarea id="jd" name="jd" cols="25" rows="13" required>Enter The JD </textarea>   <Br>
+    <Hr><Br>
+    <button type="submit" name="action" id="checkscore" value="checkscore">Check Score</button>
+    </form>
+    
+        {% if context %}
+        <Script>
+            alert("{{context}}")
+        </script>
+        {% endif %}
+    </body>
+    </html>
