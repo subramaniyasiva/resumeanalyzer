@@ -1,17 +1,18 @@
 {% load static %}
 <html>
     <head>
-        <title>Resume Filter</title>
+        <link rel="stylesheet" href="{% static 'landing.css' %}">
+        <title><h1>Resume Filter</h1></title>
         <Br>
             <Br>
         <hr>
         <BR>
             <table>
-                <thead>Choose Type Of Candidate</thead><Br><Br>
-                <tr><input type="button" value="Fresher" onclick="window.location.href='{% url 'home' %}'"></tr><Br><br>
-                <tr><input type="button" value="Experienced" onclick="window.location.href='{% url 'experienced' %}'"></tr><br><Br>
+                <thead>Choose Type of Candidate</thead><Br><Br>
+                <tr><input type="button" value="Fresher" onclick="window.location.href='{% url 'home' %}'" id='fresher'></tr><Br><br>
+                <tr><input type="button" value="Experienced" onclick="window.location.href='{% url 'experienced' %}'" id='experienced'></tr><br><Br>
             </table>
-
+            
     </head>
 
 <body>

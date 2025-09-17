@@ -1,7 +1,81 @@
 body{
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(255, 255, 255);
 }
-button{
-    background-color:antiquewhite ;
-    color: yellowgreen;
+#fresher {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: #cfef00;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
 }
+
+#fresher:hover {
+  background: #c4e201;
+}
+
+#fresher > svg {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+#fresher:hover svg {
+  transform: translateX(5px);
+}
+
+#fresher:active {
+    transform: scale(0.95);
+}
+
+#experienced {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: #cfef00;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+#experienced:hover {
+  background: #c4e201;
+}
+
+#experienced > svg {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+#experienced:hover svg {
+  transform: translateX(5px);
+}
+
+#experienced:active {
+  transform: scale(0.95);
+}
+
+ table {
+            border-collapse: collapse;
+            width: 60%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        td {
+            text-align: left;
+        }

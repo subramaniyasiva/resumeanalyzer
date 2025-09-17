@@ -7,10 +7,14 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from .models import CVAppData
-
+import re
 nltk.download('wordnet')
 nltk.download('omw-1.4')  
 r=""
+EMAIL_RE = re.compile(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')
+
+def extract_emails_regex(text: str):
+    return re.findall(EMAIL_RE, text)
 
 def landing(request):
     return render(request,'landingpage.html')
@@ -35,11 +39,13 @@ def home(request):
         jd = request.POST.get('jd')
         jd = clean_text(jd)
         cvs = request.FILES.getlist('resume')
-
+        mails=[]
         for cv_file in cvs:
             file_data = read_content(cv_file)
+            mails.append(extract_emails_regex(file_data))
+            print(mails,"******************************")
             cv_text = clean_text(file_data)
-
+            
             docs = [cv_text, jd]
 
             if all(docs):
@@ -51,14 +57,14 @@ def home(request):
 
                 obj = CVAppData(
                     job_desc=jd,
-                    cv_file=cv_file.name,
+                    cv_file=cv_text,
                     result=str(sim_matrix),
                     output=r 
                 )
                 obj.save()
 
                 # append structured data
-                results.append({'filename': cv_file.name, 'result': r})
+                results.append({'filename': cv_file.name, 'result': r,'mailId':mails})
             else:
                 results.append({'filename': cv_file.name, 'result': 'Error processing'})
 

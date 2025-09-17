@@ -1,28 +1,11 @@
-<!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <title>Resume Analyzer</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 60%;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
-        td {
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static "s1.css" %}"
 </head>
 <body>
-    <h2>Upload Resumes and Job Description</h2>
+    <h2>Upload Resumes and Paste Job Description</h2>
     
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -31,9 +14,9 @@
         <textarea name="jd" id="jd" rows="6" cols="50" required></textarea><br><br>
 
         <label for="resume">Upload Resume(s) (PDF only):</label><br>
-        <input type="file" name="resume" id="resume" accept=".pdf" multiple required><br><br>
+        <input type="file" name="resume" id="fresher" accept=".pdf" multiple required><br><br>
 
-        <button type="submit">Analyze</button>
+        <button type="submit" id="fresher">Analyze -></button>
     </form>
 
     {% if results %}
@@ -42,11 +25,13 @@
         <tr>
             <th>Resume Name</th>
             <th>Result</th>
+            <th>Mail Id</th>
         </tr>
         {% for res in results %}
         <tr>
             <td>{{ res.filename }}</td>
             <td>{{ res.result }}</td>
+            <td>{{res.mails}}</td>
         </tr>
         {% endfor %}
     </table>
